@@ -1,0 +1,22 @@
+{
+  "name": "firstgrid_tool",
+  "version": "1.0.0",
+  "description": "医捷云工具服务",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.1.0",
+    "eslint": "^5.9.0",
+    "knex": "^0.15.2",
+    "koa": "^2.6.2",
+    "koa-body": "^4.0.4",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.11",
+    "mysql": "^2.16.0",
+    "xlsx": "^0.14.1"
+  }
+}

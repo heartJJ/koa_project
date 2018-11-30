@@ -1,0 +1,14 @@
+node_modules/
+.idea/
+.vscode/
+.editorconfig
+.jshintrc
+.DS_Store
+.sonar/
+coverage/
+bunyan/*
+logs/*
+dist*
+env/
+package-lock.json
+upload/
