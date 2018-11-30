@@ -1,5 +1,4 @@
 /**
- * Copyright 2018 by FirstGrid
  * Excel解析中间件
  * Created by HJJ on 18/11/30.
  */

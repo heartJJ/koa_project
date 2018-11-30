@@ -1,3 +1,5 @@
+'use strict';
+
 const {extname, basename} = require('path'),
   readFile = require('../common/require_file');
 

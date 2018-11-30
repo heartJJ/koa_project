@@ -2,7 +2,6 @@ const knex = require('../common/knex_connect');
 const pagination = require('../middlewares/pagination');
 const {parse, write} = require('../middlewares/excel_help');
 const _ = require('lodash');
-const XLSX = require('xlsx');
 
 const getHello = async (ctx, next) => {
   return 'hello world';

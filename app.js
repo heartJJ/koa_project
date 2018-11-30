@@ -1,3 +1,5 @@
+'use strict';
+
 const Koa = require('koa');
 const app = new Koa();
 
@@ -6,7 +8,6 @@ const router = new Router();
 
 
 // 统一处理错误、返回数据
-const _ = require('lodash');
 const {wrapResult} = require('./common/util');
 
 app.use(async (ctx, next) => {
@@ -19,14 +20,14 @@ app.use(async (ctx, next) => {
       Code: err.status || -20000,
       Message: err.message || '服务商出错了',
       Reuslt: {}
-    }
+    };
   }
 });
 
 // body 解析
 const koaBody = require('koa-body'); 
-const path = require('path');
-const fs = require('fs');
+// const path = require('path');
+// const fs = require('fs');
 app.use(koaBody({ multipart: true }));
 
 app.use(async (ctx, next) => {
@@ -63,3 +64,5 @@ app_router(router);
 app.listen(3000);
 console.log('[demo] start-quick is starting at port 3000');
 
+
+// todo auth 日志 事务

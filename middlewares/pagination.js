@@ -1,5 +1,4 @@
 /**
- * Copyright 2018 by FirstGrid
  * 分页中间件
  * Created by HJJ on 18/11/30.
  */
