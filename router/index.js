@@ -1,7 +1,8 @@
 'use strict';
 
 const {extname, basename} = require('path'),
-  readFile = require('../common/require_file');
+  readFile = require('read_all_file');
+  // readFile = require('../common/require_file');
 
 module.exports = function(router) {
   readFile(__dirname)

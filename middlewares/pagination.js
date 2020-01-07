@@ -23,7 +23,7 @@ module.exports = async (ctx, next) => {
     limit: parseInt(PageSize),
     order: [[sortBy,sortOrder]],
     orderBy: ()=> {
-      let {SortBy, SortOrder='DESC'} = req.params;
+      let {SortBy, SortOrder='DESC'} = ctx.query;
       if (!SortBy || SortBy.toLowerCase() === 'default' || SortBy.trim() === '') {
         return ['CJSJ'];
       }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户端1</title>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  let socket = io('/example1');
+  socket.on('news', function(data) {
+    console.log(data);
+    $('#msg').text(data)
+  })
+
+</script>
+</head>
+<body>
+  <p id='msg'>页面1</p>
+</body>
+</html>

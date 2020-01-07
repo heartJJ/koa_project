@@ -2,10 +2,15 @@
 
 const Koa = require('koa');
 const app = new Koa();
+const Router = require('koa-router');
+const server = require('http').createServer(app.callback());
+const io = require('socket.io')(server);
+const logger = require('koa-logger');
 
-const Router = require('koa-router'); 
-const router = new Router();
+const socketHandle = require('./socket/index');
+const debug = require('debug')('myapp');
 
+app.use(logger());
 
 // 统一处理错误、返回数据
 const {wrapResult} = require('./common/util');
@@ -13,12 +18,16 @@ const {wrapResult} = require('./common/util');
 app.use(async (ctx, next) => {
   try{
     let data = await next();
-    wrapResult(ctx, data);
+
+    if (ctx.path.indexOf('socket') === -1 ) {
+      wrapResult(ctx, data);
+    } 
+
   } catch (err) {
-    console.log(err);
+    debug(err);
     ctx.body = {
       Code: err.status || -20000,
-      Message: err.message || '服务商出错了',
+      Message: err.message || 'server error',
       Reuslt: {}
     };
   }
@@ -26,8 +35,6 @@ app.use(async (ctx, next) => {
 
 // body 解析
 const koaBody = require('koa-body'); 
-// const path = require('path');
-// const fs = require('fs');
 app.use(koaBody({ multipart: true }));
 
 app.use(async (ctx, next) => {
@@ -45,24 +52,22 @@ app.use(async (ctx, next) => {
     filePaths.push(file.path);
   }
 
-  ctx.body.filePaths = filePaths;
+  if ( filePaths.length > 0 ) ctx.body.filePaths = filePaths;
   return await next();
 });
 
 // 加载路由
+let router = new Router();
 const app_router = require('./router');
-app.use(router.routes());
 app_router(router);
+app.use(router.routes());
 
+// socket连接
+socketHandle(io);
 
-// 未抓取到的错误 
-// app.on('err', (err) => {
-//   console.log(err);
-//   process.exit(-1);
-// } );
-
-app.listen(3000);
-console.log('[demo] start-quick is starting at port 3000');
-
+// 监听端口
+server.listen(3001, () => {
+  debug('listening on *:3001');
+});
 
 // todo auth 日志 事务

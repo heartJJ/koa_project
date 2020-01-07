@@ -4,20 +4,27 @@
   "description": "医捷云工具服务",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=myapp,socket.io:* nodemon app.js --env=env/develop.env"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "debug": "^4.1.0",
+    "dotenv": "^7.0.0",
     "eslint": "^5.9.0",
     "eslint-plugin-no-useless-assign": "^1.0.2",
     "knex": "^0.15.2",
-    "koa": "^2.6.2",
+    "koa": "^2.7.0",
     "koa-body": "^4.0.4",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.11",
     "mysql": "^2.16.0",
-    "xlsx": "^0.14.1"
+    "pandora": "^1.10.6",
+    "read_all_file": "^1.0.0",
+    "socket.io": "^2.2.0",
+    "xlsx": "^0.14.1",
+    "yargs": "^13.2.2"
   }
 }
