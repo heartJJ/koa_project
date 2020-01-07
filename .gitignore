@@ -12,4 +12,3 @@ dist*
 env/
 package-lock.json
 upload/
-common/knex_connect.js
