@@ -3,6 +3,8 @@ const Knex = require('knex');
 const config = require('../config');
 const mysql = config.mysql || config;
 
+console.log(mysql);
+
 const knex = Knex({
   client: 'mysql',
   connection: {
@@ -15,6 +17,10 @@ const knex = Knex({
   debug: true,
   useNullAsDefault: true,
   pool: { min: 2, max: 50 }
+});
+
+knex.client.on('query-response', function (response, obj, builder) {
+  console.log('-------------------\n', builder.toString());
 });
 
 module.exports = knex;
