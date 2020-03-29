@@ -3,7 +3,7 @@ const Knex = require('knex');
 const config = require('../config');
 const mysql = config.mysql || config;
 
-console.log(mysql);
+// console.log(mysql);
 
 const knex = Knex({
   client: 'mysql',

@@ -3,7 +3,7 @@
       "name": "koa-project",                             // 项目名          
       "script": "app.js",                      // 执行文件
       "cwd": "./",                                // 根目录
-      "args": "--env=env/develop.env",                                 // 传递给脚本的参数
+      "args": "--env=env/prod.env",                                 // 传递给脚本的参数
       "interpreter": "",                          // 指定的脚本解释器
       "interpreter_args": "",                     // 传递给解释器的参数
       "watch": true,                              // 是否监听文件变动然后重启

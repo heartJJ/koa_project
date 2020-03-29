@@ -4,7 +4,7 @@ const {parse, write} = require('../middlewares/excel_help');
 const _ = require('lodash');
 
 const getVersion = async (ctx, next) => {
-  return await knex('version').select().where('projectId', 10000);
+  return await knex('version').select().where('project_id', 10000);
 };
 
 const getUsers = async (ctx, next) => {
