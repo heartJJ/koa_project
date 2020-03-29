@@ -1,7 +1,7 @@
 {
   "name": "koa_project",
   "version": "1.0.0",
-  "description": "",
+  "description": "个人koa学习项目",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
