@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "DEBUG=myapp,socket.io:* nodemon app.js --env=env/develop.env",
-    "pm2": "pm2 start pm2.json"
+    "pm2": "pm2 start pm2.json",
+    "prod": "node app.js --env=env/prod.env"
   },
   "author": "",
   "license": "ISC",
