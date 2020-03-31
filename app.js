@@ -67,7 +67,7 @@ socketHandle(io);
 
 // 监听端口
 server.listen(3001, () => {
-  debug('listening on *:3001');
+  console.log('listening on *:3001');
 });
 
 // todo auth 日志 事务
