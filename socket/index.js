@@ -1,4 +1,5 @@
 const debug = require('debug')('myapp');
+const redis = require('../common/redis_connect');
 
 module.exports = io => {
 
@@ -6,9 +7,12 @@ module.exports = io => {
   io.on('connection', socket => {
     socket.emit('news', 'normal connection');
 
-    socket.on('chat message', (msg) => {
-      debug('message: '+ msg);
+    socket.on('chat message', async msg => {
+      debug('message: ' + msg, socket.id);
+      
+      await redis.set(socket.id, msg);
       socket.emit('chat message', msg);
+      socket.broadcast.emit('news', `${socket.id}: ${msg}`);
     });
   });
 

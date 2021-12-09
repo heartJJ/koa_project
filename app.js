@@ -5,12 +5,23 @@ const app = new Koa();
 const Router = require('koa-router');
 const server = require('http').createServer(app.callback());
 const io = require('socket.io')(server);
-const logger = require('koa-logger');
+const { createAdapter } = require('@socket.io/redis-adapter');
+const { Cluster } = require('ioredis');
 
 const socketHandle = require('./socket/index');
+const logger = require('koa-logger');
 const debug = require('debug')('myapp');
-
 app.use(logger());
+
+// socket 适配器
+const pubClient = new Cluster([
+  {
+    host: 'localhost',
+    port: 6379,
+  },
+]);
+const subClient = pubClient.duplicate();
+io.adapter(createAdapter(pubClient, subClient));
 
 // 统一处理错误、返回数据
 const {wrapResult} = require('./common/util');
@@ -67,6 +78,7 @@ socketHandle(io);
 
 // 监听端口
 server.listen(3001, () => {
+  console.log(process.env.NODE_ENV);
   console.log('listening on *:3001');
 });
 

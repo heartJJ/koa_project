@@ -12,10 +12,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@socket.io/redis-adapter": "^7.1.0",
     "debug": "^4.1.0",
     "dotenv": "^7.0.0",
     "eslint": "^5.9.0",
     "eslint-plugin-no-useless-assign": "^1.0.2",
+    "ioredis": "^4.28.2",
     "knex": "^0.15.2",
     "koa": "^2.7.0",
     "koa-body": "^4.0.4",
@@ -25,7 +27,8 @@
     "mysql": "^2.16.0",
     "pandora": "^1.10.6",
     "read_all_file": "^1.0.0",
-    "socket.io": "^2.2.0",
+    "redis": "^4.0.0",
+    "socket.io": "^4.4.0",
     "xlsx": "^0.14.1",
     "yargs": "^13.2.2"
   }
