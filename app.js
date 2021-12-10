@@ -23,6 +23,9 @@ const pubClient = new Cluster([
 const subClient = pubClient.duplicate();
 io.adapter(createAdapter(pubClient, subClient));
 
+// socket连接
+socketHandle(io);
+
 // 统一处理错误、返回数据
 const {wrapResult} = require('./common/util');
 
@@ -67,18 +70,21 @@ app.use(async (ctx, next) => {
   return await next();
 });
 
+
+app.use(async (ctx, next) => {
+  ctx.io = io; // socket 对象置入 ctx ，便于服务中使用
+  return await next();
+});
+
 // 加载路由
 let router = new Router();
 const app_router = require('./router');
 app_router(router);
 app.use(router.routes());
 
-// socket连接
-socketHandle(io);
-
 // 监听端口
 server.listen(3001, () => {
-  console.log(process.env.NODE_ENV);
+  // console.log(process.env.NODE_ENV);
   console.log('listening on *:3001');
 });
 
